@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :get_events, only: [:index]
 
   def index
+    @events = Event.all
   end
 
   def new
@@ -10,6 +11,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @attendees = @event.attendees
   end
 
   def create
@@ -20,6 +22,12 @@ class EventsController < ApplicationController
     else 
       render 'new'
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_url, status: :see_other, alert: "Event sucessfully deleted!"
   end
 
 

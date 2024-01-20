@@ -1,4 +1,21 @@
-<h1>User Page</h1>
+<h1>User Page for <%= @user.email %> </h1>
+<h2>Created Events:</h2>
 <% @events.each do |event| %>
-  <%= event.name %>
+  <div><%= event.name %></div>
+<% end %>
+
+<h2>Attended Events:</h2>
+
+  <h3>Upcoming Events:</h3>
+<% @attendances.each do |attendance| %>
+  <% if attendance.event.date > Time.now %>
+    <div><%= attendance.event.name %></div>
+  <% end %>
+<% end %>
+
+  <h3>Past Events:</h3>
+<% @attendances.each do |attendance| %>
+  <% if attendance.event.date < Time.now %>
+    <div><%= attendance.event.name %></div>
+  <% end %>
 <% end %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :attendances
   devise_for :users
-  resources :user#, only: [:show]
+  resources :user #, only: [:show]
   # get 'users/:id' => 'users#show'
 
 

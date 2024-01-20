@@ -1,8 +1,18 @@
 <h1>All Events</h1>
-<% @events.each do |event| %>
-  <%= event.name %>
+<h2> Upcoming Events: </h2>
+
+  <% @events.upcoming.each do |event| %>
+    <div><%= event.name %></div>
+  <% end %>
+
+<h2>Past Events: </h2>
+
+  <% @events.past.each do |event| %>
+    <div><%= event.name %></div>
+  <% end %>
+
+<% if current_user %>
+  <div><%= link_to "Add new Event", new_event_path, class: "btn btn-primary" %></div>
 <% end %>
 
-<%= link_to "Add new Event", new_event_path, class: "btn btn-primary" %>
-
-<%= button_to "Create New Event", new_event_path, method: 'get' %>
+<%#= button_to "Create New Event", new_event_path, method: 'get' %>

@@ -1,8 +1,20 @@
 <h1>Event</h1>
 
-
 <ul>
   <li><%= @event.name %></li>
   <li><%= @event.location %></li>
   <li><%= @event.date %></li>
 </ul>
+
+<h2>Attendees</h2>
+<% @attendees.each do |attendant| %>
+  <%= attendant.user.email %>
+<% end %>
+
+<% if current_user %>
+  <% if current_user.id == @event.creator_id %>
+    <div><%= button_to "Delete Event", event_path(@event), method: :delete, class: "btn btn-primary", data: { confirm: "Delete Event?" }%></div>
+  <% end %>
+<% end %>
+
+  
